@@ -15,7 +15,7 @@
         <?php include "menu.php"; include "db-functions.php" ?>
 
         <h1>Ajouter un produit</h1>
-        <form action="traitement.php?action=addProd" method="post">
+        <form action="traitement.php?action=addProdDB" method="post">
             <p>
                 <label>
                     Nom du produit :
@@ -30,8 +30,8 @@
             </p>
             <p>
                 <label>
-                    Quantité désirée :
-                    <input type="number" name="qtt" value="1">
+                    Description :
+                    <input type="textarea" name="description">
                 </label>
             </p>
             <p>

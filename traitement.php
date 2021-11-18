@@ -13,7 +13,7 @@
 
         switch($action){
             
-            case "addProd":
+            /*case "addProd":
                 if(isset($_POST['submit'])){
 
                     $name= filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
@@ -40,7 +40,23 @@
                     setMessage("error", "Sale pirate de ta maman, tu valides le formulaire STP !");
                 }
                 redirect("index.php");
-                break;
+                break;*/
+
+                case "addProdDB":
+                    if(isset($_POST['submit'])){
+    
+                        $name= filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                        $descr = filter_input(INPUT_POST, "description", FILTER_DEFAULT);;
+
+                        insertProduct($name, $descr,$price);
+                
+                    }
+                    else{
+                        setMessage("error", "Sale pirate de ta maman, tu valides le formulaire STP !");
+                    }
+                    redirect("index.php");
+                    break;
 
                 case "addProdById":
                     if(isset($_GET['id'])){
