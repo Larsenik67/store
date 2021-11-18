@@ -12,7 +12,7 @@
         <title>Ajout produit</title>
     </head>
     <body>
-        <?php include "menu.php"; ?>
+        <?php include "menu.php"; include "db-functions.php" ?>
 
         <h1>Ajouter un produit</h1>
         <form action="traitement.php?action=addProd" method="post">
@@ -38,5 +38,6 @@
                 <input type="submit" name="submit" value="Ajouter le produit">
             </p>
         </form>
+        <?php insertProduct('RTX 2060', 'Nvidia GeForce RTX 2060', '450') ?>
     </body>
 </html>
