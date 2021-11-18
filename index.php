@@ -38,6 +38,5 @@
                 <input type="submit" name="submit" value="Ajouter le produit">
             </p>
         </form>
-        <?php insertProduct('RTX 2060', 'Nvidia GeForce RTX 2060', '450') ?>
     </body>
 </html>
