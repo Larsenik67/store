@@ -58,11 +58,13 @@ function insertProduct($name, $descr, $price){
     $query = "INSERT INTO product (name, description, price)
               VALUES (:name, :descr, :price)";
     $stmt = $db->prepare($query);
-    return $stmt->execute([
+    $stmt->execute([
         ":name" => $name,
         ":descr" => $descr,
         ":price" => $price,
     ]);
+
+    return $db->lastInsertId();
 
 }
 
