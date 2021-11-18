@@ -1,10 +1,11 @@
 <?php
     session_start();
     include "functions.php";
+    include "db-functions.php";
 
     $action = filter_input(INPUT_GET, "action", FILTER_VALIDATE_REGEXP, [
         "options" => [
-            "regexp" => "/addProd|updateQtt|deleteProd|deleteAll/"
+            "regexp" => "/addProd|addProdById|updateQtt|deleteProd|deleteAll/"
         ]
     ]);
 
@@ -40,6 +41,31 @@
                 }
                 redirect("index.php");
                 break;
+
+                case "addProdById":
+                    if(isset($_GET['id'])){
+                        
+                        $products = findOneById($_GET['id']);
+                        $name= $products['name'];
+                        $price = $products['price'];
+                        $qtt = 1;
+
+                        $product = [
+                            "name"  => $name,
+                            "price" => $price,
+                            "qtt"   => $qtt,
+                        ];
+
+                        $_SESSION['products'][] = $product;
+                            
+                            setMessage("success", "Produit $name ajouté avec succès ! <a href='recap.php'>Voir le panier</a>");
+                            
+                    }
+                    else{
+                        setMessage("error", "Sale pirate de ta maman, tu valides le formulaire STP !");
+                    }
+                    redirect("recap.php");
+                    break;
 
             case "updateQtt":
                 $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
