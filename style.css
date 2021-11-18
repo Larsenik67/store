@@ -1,0 +1,12 @@
+.success{
+    background-color: rgb(129, 255, 157);
+    color: rgb(22, 78, 25);
+}
+.error{
+    background-color: rgb(255, 134, 134);
+    color: rgb(78, 22, 22);
+}
+.notice{
+    background-color: rgb(134, 211, 255);
+    color: rgb(23, 22, 78);
+}
