@@ -96,7 +96,7 @@
 
                             $name = $faker->word;
                             $price = $faker->randomFloat($nbMaxDecimals = 2, $min = 0.99, $max = 20000);
-                            $descr = $faker->realText($maxNbChars = 200, $indexSize = 2);
+                            $descr = $faker->sentence(10);
                             
                             insertProduct($name, $descr, $price);
                         }
