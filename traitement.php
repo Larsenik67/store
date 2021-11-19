@@ -48,7 +48,7 @@
 
                         $name= filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
                         $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                        $descr = filter_input(INPUT_POST, "description", FILTER_DEFAULT);;
+                        $descr = filter_input(INPUT_POST, "description", FILTER_DEFAULT);
 
                         $id = insertProduct($name, $descr, $price);
 
@@ -88,14 +88,18 @@
 
                 case "addFaker":
                     if(isset($_POST['submit'])){
-                        $faker = Faker\Factory::create();
 
-                        $name = $faker->word;
-                        $price = $faker->randomFloat($nbMaxDecimals = 2, $min = 0.99, $max = 20000);
-                        $descr = $faker->realText($maxNbChars = 200, $indexSize = 2);
-                        
-                        insertProduct($name, $descr, $price);
-                    
+                        $loop = filter_input(INPUT_POST, "qtt", FILTER_DEFAULT);
+
+                        for($i = 1; $i <= $loop; $i++){
+                            $faker = Faker\Factory::create();
+
+                            $name = $faker->word;
+                            $price = $faker->randomFloat($nbMaxDecimals = 2, $min = 0.99, $max = 20000);
+                            $descr = $faker->realText($maxNbChars = 200, $indexSize = 2);
+                            
+                            insertProduct($name, $descr, $price);
+                        }
 
                         redirect("index.php");
                 
