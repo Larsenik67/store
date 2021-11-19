@@ -2,10 +2,11 @@
     session_start();
     include "functions.php";
     include "db-functions.php";
+    include 'vendor/autoload.php';
 
     $action = filter_input(INPUT_GET, "action", FILTER_VALIDATE_REGEXP, [
         "options" => [
-            "regexp" => "/addProd|addProdById|updateQtt|deleteProd|deleteAll/"
+            "regexp" => "/addProdDB|addProdById|addFaker|updateQtt|deleteProd|deleteAll/"
         ]
     ]);
 
@@ -83,6 +84,26 @@
                         setMessage("error", "Sale pirate de ta maman, tu valides le formulaire STP !");
                     }
                     redirect("recap.php");
+                    break;
+
+                case "addFaker":
+                    if(isset($_POST['submit'])){
+                        $faker = Faker\Factory::create();
+
+                        $name = $faker->word;
+                        $price = $faker->randomFloat($nbMaxDecimals = 2, $min = 0.99, $max = 20000);
+                        $descr = $faker->realText($maxNbChars = 200, $indexSize = 2);
+                        
+                        insertProduct($name, $descr, $price);
+                    
+
+                        redirect("index.php");
+                
+                    }
+                    else{
+                        setMessage("error", "Sale pirate de ta maman, tu valides le formulaire STP !");
+                    }
+                    redirect("faker.php");
                     break;
 
             case "updateQtt":
